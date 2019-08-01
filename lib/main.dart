@@ -35,7 +35,9 @@ class _MyHomePageState extends State<MyHomePage> {
   GlobalKey<RefreshIndicatorState> _refreshIndicator =
       GlobalKey<RefreshIndicatorState>();
   int _currentIndex = 0;
-  PageController pageController = PageController(initialPage: 0,keepPage: true);
+  PageController pageController =
+      PageController(initialPage: 0, keepPage: true);
+  GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 
   Widget getItem(Article article) {
     return Card(
@@ -58,8 +60,41 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldState,
       appBar: AppBar(
         title: Text(widget.title),
+      ),
+      drawer: Container(
+        decoration: BoxDecoration(
+            color: Colors.green, backgroundBlendMode: BlendMode.colorBurn),
+        child: Drawer(
+          child: ListView(
+            padding: EdgeInsets.all(0),
+            children: <Widget>[
+              GestureDetector(
+                  onDoubleTap: () {
+                    _scaffoldState.currentState.showSnackBar(
+                        SnackBar(content: Text("Double Tap SuitCase")));
+                  },
+                  child: DrawerHeader(child: Icon(Icons.work))),
+              ListTile(
+                title: Text("Item 1"),
+                subtitle: Text("Go Home"),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text("Item 1"),
+                subtitle: Text("Go Home"),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text("Item 1"),
+                subtitle: Text("Go Home"),
+                onTap: () {},
+              )
+            ],
+          ),
+        ),
       ),
       body: PageView(
         controller: pageController,
@@ -168,12 +203,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return null;
   }
 
-
   void _handleTapChange(int value) {
     setState(() {
       _currentIndex = value;
-      pageController.animateToPage(value, duration: Duration(seconds: 2), curve: Curves.fastOutSlowIn);
+      pageController.animateToPage(value,
+          duration: Duration(milliseconds: 50), curve: Curves.easeOutQuad);
     });
-
   }
 }
