@@ -6,11 +6,14 @@ class Article {
 
   Article(this.headline, this.url, this.comments, this.content);
 
+  List<Article> getArticles(){
+    return articles;
+  }
 
 }
 
 final articles = [
-  new Article("Blender 2.80 has Arrived", "https://www.blender.org/", ["22dd1dsssff","333","dfdsadd"],
+  new Article("Blender 2.80 has Arrived", "https://www.blender.org/", ["22dd1","333","dfdsadd"],
       "Blender is coming... Brace Yourselfs"),
   new Article("Google reveals fistful flwas in apple", "https://www.blender.org/", ["222s","333"],
       "Blender is coming... Brace Yourselfs"),
