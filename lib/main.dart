@@ -35,6 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
   GlobalKey<RefreshIndicatorState> _refreshIndicator =
       GlobalKey<RefreshIndicatorState>();
   int _currentIndex = 0;
+  PageController pageController = PageController(initialPage: 0,keepPage: true);
 
   Widget getItem(Article article) {
     return Card(
@@ -61,6 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: PageView(
+        controller: pageController,
         onPageChanged: _handleTapChange,
         children: <Widget>[
           new Center(
@@ -170,6 +172,8 @@ class _MyHomePageState extends State<MyHomePage> {
   void _handleTapChange(int value) {
     setState(() {
       _currentIndex = value;
+      pageController.animateToPage(value, duration: Duration(seconds: 2), curve: Curves.fastOutSlowIn);
     });
+
   }
 }
