@@ -3,8 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'bluetooth/bluetooth.dart';
 import 'data/article.dart';
+import 'package:the_boring_project/Page2.dart';
 
+import 'login/login.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -109,21 +112,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
-          new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[Text("Page2")],
-          ),
-          new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[Text("Page3")],
-          ),
-          new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[Text("Page4")],
-          )
+          WeatherPage(),
+          Login(),
+          Bluetooth(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
